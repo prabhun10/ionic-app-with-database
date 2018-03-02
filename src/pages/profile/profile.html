@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar>
+    <!-- <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button> -->
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<form [formGroup]="frmProfile"  (ngSubmit)="Updateprofile()" >
+
+		<ion-list class="list-form" padding>
+
+
+
+			<ion-item>
+			  <ion-label floating>Name</ion-label>
+			  <ion-input type="text" formControlName="txtName" [class.invalid]="!frmProfile.controls.txtName.valid &&
+        (frmProfile.controls.txtName.dirty || submitAttempt)" [(ngModel)]="Name"></ion-input>
+		  </ion-item>
+
+      <p style="color: #ea6153;" *ngIf="!frmProfile.controls.txtName.valid  && (frmProfile.controls.txtName.dirty || submitAttempt)">
+        <ion-label no-margin stacked>Please enter a valid name</ion-label>
+      </p>
+
+      <ion-item>
+			  <ion-label floating>Email</ion-label>
+			  <ion-input type="email" formControlName="txtEmail" [(ngModel)]="Email" [disabled]="true"></ion-input>
+		  </ion-item>
+
+
+      <ion-item>
+			  <ion-label floating>Mobile</ion-label>
+			  <ion-input type="tel" formControlName="txtMobile" minlength = "10" maxlength = "10" [class.invalid]="!frmProfile.controls.txtMobile.valid &&
+        (frmProfile.controls.txtMobile.dirty || submitAttempt)" [(ngModel)]="Mobile"></ion-input>
+		  </ion-item>
+
+      <p style="color: #ea6153;" *ngIf="!frmProfile.controls.txtMobile.valid  && (frmProfile.controls.txtMobile.dirty || submitAttempt)">
+        <ion-label no-margin stacked>Please enter a valid name</ion-label>
+      </p>
+
+
+
+
+
+
+
+
+
+
+
+		</ion-list>
+
+		<p>
+			<button ion-button block color="secondary" type="submit" >Submit</button>
+		</p>
+	</form>
+<!-- 
+  <ion-col>
+    <span class="white" (click)="logout()">
+      New here?
+      <span class="whitesignup">logout</span>
+    </span>
+  </ion-col> -->
+
+
+</ion-content>

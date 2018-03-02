@@ -1,0 +1,75 @@
+<ion-content class="auth-bg">
+  <div class="auth-content">
+    <div class="light-bg">
+      <div padding text-center>
+        <div class="logo">
+          Register
+        </div>
+      </div>
+
+     <form [formGroup]="frmSignup" (ngSubmit)="signup()">
+         <ion-list class="list-form" padding>
+
+        <ion-item>
+          <ion-input type="text" formControlName = "textName"  [class.invalid] = "!frmSignup.controls.textName.valid && (frmSignup.controls.textName.dirty || submitAttempt)"  placeholder="Enter Your Name " ></ion-input>
+        </ion-item>
+
+        <p style="color:#ea6153;" *ngIf="!frmSignup.controls.textName.valid && (frmSignup.controls.textName.dirty || submitAttempt)">
+        <ion-label no-margin stacked> Please enter a valid name  </ion-label></p>
+
+        <ion-item>
+          <ion-input type="email" #input (blur)="checkMail()"  formControlName = "textEmail"  [class.invalid] = "!frmSignup.controls.textEmail.valid && (frmSignup.controls.textEmail.dirty || submitAttempt)"  placeholder="Enter Your Email " ></ion-input>
+        </ion-item>
+
+        <p style="color:#ea6153;" *ngIf ="!frmSignup.controls.textEmail.valid && (frmSignup.controls.textEmail.dirty || submitAttempt)" >
+        <ion-label no-margin stacked> Please enter a valid email  </ion-label> </p>
+
+        <p style="color:#ea6153;" *ngIf ="regMailcheck" >
+        <ion-label no-margin stacked> Email registered already  </ion-label> </p>
+
+        <ion-item>
+          <ion-input type="tel"  maxlength='10' [class.invalid] = "!frmSignup.controls.textMobile.valid && (frmSignup.controls.textMobile.dirty || submitAttempt)" formControlName = "textMobile" placeholder="Enter Your Mobile No " ></ion-input>
+        </ion-item>
+
+        <p style="color:#ea6153;" *ngIf="!frmSignup.controls.textMobile.valid && (frmSignup.controls.textMobile.dirty || submitAttempt)">
+        <ion-label no-margin stacked>  Please enter a valid mobile   </ion-label> </p>
+
+        <p style="color:#ea6153;" *ngIf ="regphonecheck" >
+        <ion-label no-margin stacked> Phone registered already  </ion-label> </p>
+
+        <ion-item>
+          <ion-input type="password" minlength='6' maxlength="10" formControlName = "textPassword"  [class.invalid] = "!frmSignup.controls.textPassword.valid && (frmSignup.controls.textPassword.dirty || submitAttempt)" placeholder="Enter Password" ></ion-input>
+        </ion-item>
+
+        <p style="color: #ea6153;" *ngIf="!frmSignup.controls.textPassword.valid && !frmSignup.controls.textPassword.hasError('minlength')  && (frmSignup.controls.textPassword.dirty || submitAttempt)">
+        <ion-label no-margin stacked>Please enter a valid password</ion-label>
+        </p>
+
+        <p style="color: #ea6153;" *ngIf="frmSignup.controls.textPassword.hasError('minlength') && !frmSignup.controls.textPassword.valid">
+        <ion-label no-margin stacked>Minimum password length is 6!</ion-label>
+        </p>
+
+
+        </ion-list>
+
+        <div padding>
+          <button  ion-button color="primary" type="submit" block [disabled]="!frmSignup.valid">Sign Up</button>
+        </div>
+
+      </form>
+
+
+
+    </div>
+
+    <div padding=""></div>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-5></ion-col>
+        <ion-col col-7>
+          <span class="white" (click)="backtoLogin()">Have Account?<span class="whitesignup"  >Login</span></span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
